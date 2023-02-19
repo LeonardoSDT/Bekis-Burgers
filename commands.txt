@@ -1,2 +1,0 @@
-docker build --tag bekis-burgers .
-docker run --publish 8000:8000 bekis-burgers
