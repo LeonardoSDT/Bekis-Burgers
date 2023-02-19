@@ -8,6 +8,19 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: bekis-burgers-pgadmin
+    depends_on:
+      - db
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: leonardo.sanchez@upnay.edu.mx
+      PGADMIN_DEFAULT_PASSWORD: 12345678
+    restart: always
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
