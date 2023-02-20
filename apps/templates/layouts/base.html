@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Bekis Burgers - {% block title %}{% endblock %}
+  </title>
+
+  <link href="{{ ASSETS_ROOT }}/css/output.css" rel="stylesheet">
+
+  <!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body>
+
+    <main>
+
+        {% include "includes/navigation.html" %} 
+
+        {% block content %}{% endblock content %}
+
+    </main>
+
+  <!-- Specific JS goes HERE --> 
+  {% block javascripts %}{% endblock javascripts %}  
+</body>
+</html>

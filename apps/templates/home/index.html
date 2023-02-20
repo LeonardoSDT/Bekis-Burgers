@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'layouts/base.html' %}
 
-  <link href="{{ ASSETS_ROOT }}/css/output.css" rel="stylesheet">
+{% block title %} Inicio {% endblock title %}
 
-  <title>
-    Bekis Burgers
-  </title>
-</head>
-<body>
-  
-</body>
-</html>
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+  <h1>Inicio</h1>
+  <a href="{% url 'login' %}">Iniciar sesión</a>
+  <a href="{% url 'register' %}">Registrarse</a>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

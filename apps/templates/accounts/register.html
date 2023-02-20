@@ -1,0 +1,101 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Registrarse {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div>
+    {% include "includes/navigation.html" %}
+  </div>
+
+  <main>
+
+    <section>
+        <div>
+
+            <div>
+              <h5>Registrarse</h5>
+            </div>
+
+            <div>
+              
+              <div>
+                <p>
+                  {% if msg %}
+                    <span>{{ msg | safe }}</span>
+                  {% else %}
+                    Ingrese sus credenciales
+                  {% endif %}  
+                </p>
+              </div>
+
+            </div>
+
+            <div>
+
+              {% if success %} 
+              
+                <p> 
+                  <div>
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                  </div> 
+                </p>
+
+              {% else %}
+
+                <form role="form text-left" method="post" action="">
+
+                    {% csrf_token %}
+
+                    <label>Nombre de usuario</label>
+                    <div>
+                      {{ form.username }}
+                    </div>
+                    <span>{{ form.username.errors }}</span>
+
+                    <label>Correo electrónico</label>
+                    <div>
+                      {{ form.email }}
+                    </div>
+                    <span>{{ form.email.errors }}</span>
+
+                    <label>Contraseña</label>
+                    <div>
+                      {{ form.password1 }}
+                    </div>
+                    <span>{{ form.password1.errors }}</span>
+
+                    <label>Confirmar contraseña</label>
+                    <div>
+                      {{ form.password2 }}
+                    </div>
+                    <span>{{ form.password2.errors }}</span>                      
+
+                    <div>
+                      <button type="submit" name="register">Registrarse</button>
+                    </div>
+
+                    <div>
+                      <a href="{% url 'login' %}">Iniciar sesión</a>
+                      <a href="{% url 'index' %}">Inicio</a>
+                    </div>                
+
+                </form>
+
+              {% endif %}
+
+            </div>
+          </div>
+    </section>
+
+    {% include "includes/footer.html" %}
+
+  </main>
+
+  {% endblock content %}
+
+  <!-- Specific JS goes HERE --> 
+  {% block javascripts %}{% endblock javascripts %}

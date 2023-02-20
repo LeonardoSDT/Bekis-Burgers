@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Iniciar sesión {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div>
+    {% include "includes/navigation.html" %}
+  </div>
+
+  <main>
+    <section>
+        <div>
+            <div>
+              <h3>
+                Sistema Integral de Información
+              </h3>
+              <p>
+                {% if msg %}
+                  <span>{{ msg | safe }}</span>
+                {% else %}
+                  Ingrese sus credenciales
+                {% endif %}                     
+              </p>
+            </div>
+            <div>
+
+              <form role="form text-left" method="post" action="">
+                
+                {% csrf_token %}
+
+                <label>Nombre de usuario</label>
+                <div>
+                  {{ form.username }}
+                </div>
+
+                <label>Contraseña</label>
+                <div>
+                  {{ form.password }}
+                </div>
+
+                <div>
+                  <button type="submit" name="login">Iniciar sesión</button>
+                </div>
+
+                <div>
+                  <a href="{% url 'register' %}">Registrarse</a>
+                  <a href="{% url 'index' %}">Inicio</a>
+                </div>  
+
+              </form>
+
+            </div>
+          </div>
+    </section>
+  </main>
+
+  {% include "includes/footer.html" %}
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
