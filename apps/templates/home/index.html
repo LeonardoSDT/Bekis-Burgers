@@ -7,7 +7,9 @@
 
 {% block content %}
   <h1>Inicio</h1>
+  <!-- <img src="{{ ASSETS_ROOT }}/img/logos/bekis-logo.jpeg" alt=""> -->
   {% if user.is_authenticated %}
+    <p>Bienvenido, {{ user.username }}</p>
     <a href="{% url 'logout' %}">Cerrar sesión</a>
   {% else %}
     <a href="{% url 'login' %}">Iniciar sesión</a>
