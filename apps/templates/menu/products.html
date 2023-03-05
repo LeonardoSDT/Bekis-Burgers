@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Productos {% endblock title %}
+
+{% block content %}
+
+{% include 'includes/navigation.html' %}
+
+<div class="pt-12"></div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="container">
+    <div class="section text-center">
+      <h2 class="title">Productos</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="card col-6">
+                <img class="card-img-top" src="{{ ASSETS_ROOT }}/img/products/{{ product.img_url }}" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
+                  <a href="#" class="btn btn-primary">Comprar</a>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+  </div>
+</div>
+
+  {% include 'includes/footer.html' %} 
+
+  {% endblock content %}
