@@ -6,7 +6,8 @@ Copyright (c) 2019 - present AppSeed.us
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
+from django.contrib.auth.decorators import login_required
+from .forms import LoginForm, SignUpForm, UpdateUserForm, DeleteUserForm
 
 
 def login_view(request):
@@ -54,3 +55,34 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+@login_required
+def edit_view(request):
+    msg = None
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+            user_form.save()
+            msg = 'Su perfil ha sido actualizado correctamente'
+        else:
+            msg = 'El formulario no es válido'
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+
+    return render(request, 'accounts/edit.html', {'user_form': user_form, "msg": msg})
+
+@login_required
+def delete_view(request):
+    msg = None
+    if request.method == 'POST':
+        delete_form = DeleteUserForm(request.POST, instance=request.user)
+        user = request.user
+        user.delete()
+        msg = 'La cuenta de usuario ha sido eliminada'
+        return redirect("/")
+    else:
+        delete_form = DeleteUserForm(instance=request.user)
+
+    return render(request, 'accounts/delete.html', {'delete_form': delete_form, "msg": msg})
+

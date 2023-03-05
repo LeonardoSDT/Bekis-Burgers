@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h1 class="text-white">Título</h1>
+            <h1 class="text-white">Página principal</h1>
             <h3 class="text-white">Subtítulo</h3>
           </div>
         </div>
@@ -23,6 +23,13 @@
     <div class="container">
       <div class="section text-center">
         <h2 class="title">Sección principal</h2>
+        <div class="row mt-3">
+          <p class="mb-0 text-center">
+            {% if msg %}
+              {{ msg | safe }}
+            {% endif %}
+          </p>
+        </div>
       </div>
     </div>
   </div>
