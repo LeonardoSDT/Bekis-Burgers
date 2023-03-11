@@ -29,7 +29,7 @@
 
 ```bash
 $ git clone https://github.com/LeonardoSDT-UPEN/Bekis-Burgers.git
-$ cd sample-docker-django-mysql
+$ cd Bekis-Burgers
 ```
 
 <br />
