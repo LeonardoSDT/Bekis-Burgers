@@ -1,4 +1,4 @@
-# `Sistema de Proveedores DEMO`  
+# `Bekis Burgers`  
 
 `Open-Source` seed project provided by AppSeed in **Django** Framework on top of **[Material Kit](https://appseed.us/product/material-kit/django/)** design. Designed for those who like bold elements and beautiful websites, **Material Kit 2** is ready to help you create stunning websites and web apps. `Material Kit 2` is built with over 60 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining.
 
@@ -28,7 +28,7 @@
 > 👉 **Step 1** - Download the code from the GH repository (using `GIT`) 
 
 ```bash
-$ git clone https://github.com/app-generator/sample-docker-django-mysql.git
+$ git clone https://github.com/LeonardoSDT-UPEN/Bekis-Burgers.git
 $ cd sample-docker-django-mysql
 ```
 
