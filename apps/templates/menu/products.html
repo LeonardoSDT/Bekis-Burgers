@@ -13,12 +13,21 @@
       <h2 class="title">Productos</h2>
         <div class="row">
             {% for product in products %}
-            <div class="card col-6">
-                <img class="card-img-top" src="{{ ASSETS_ROOT }}/img/products/{{ product.img_url }}" alt="">
-                <div class="card-body">
-                  <h5 class="card-title">{{ product.name }}</h5>
-                  <p class="card-text">{{ product.description }}</p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ ASSETS_ROOT }}/img/products/{{ product.img_url }}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><small class="text-muted">$ {{ product.price }}</small></p>
+                        <a href="{% url 'product_detail' product_id=product.id %}" class="btn btn-primary">Ver producto</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
             {% endfor %}

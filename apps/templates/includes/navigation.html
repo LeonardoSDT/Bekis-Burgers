@@ -16,6 +16,12 @@
             </button>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-auto">
+                <li class="nav-item ms-lg-auto">
+                  <a class="nav-link nav-link-icon me-2" href="#">
+                    <i class="fas fa-info-circle me-1"></i>
+                    <p class="d-inline text-sm z-index-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contáctanos">Contáctanos</p>
+                  </a>
+                </li>
                 <li class="nav-item dropdown dropdown-hover mx-2">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons opacity-6 me-2 text-md">menu_book</i>
@@ -28,13 +34,24 @@
                         <span>Productos</span>
                       </a>
                       {% if request.user.is_staff %}
-                      <a href="{% url 'add' %}" class="dropdown-item border-radius-md">
+                      <a href="{% url 'admin:menu_product_add' %}" class="dropdown-item border-radius-md">
                         <span>Añadir productos</span>
+                      </a>
+                      <a href="{% url 'admin:menu_product_changelist' %}" class="dropdown-item border-radius-md">
+                        <span>Editar productos</span>
                       </a>
                       {% endif %}
                     </div>
                   </div>
                 </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item ms-lg-auto">
+                  <a class="nav-link nav-link-icon me-2" href="{% url 'cart' %}">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    <p class="d-inline text-sm z-index-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito de compras">Carrito de compras</p>
+                  </a>
+                </li>
+                {% endif %}
                 {% if request.user.is_authenticated %}
                 <li class="nav-item dropdown dropdown-hover mx-2">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">

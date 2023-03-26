@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Carrito de compras {% endblock title %}
+
+{% block content %}
+
+{% include 'includes/navigation.html' %}
+
+<div class="pt-12"></div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="container">
+    <div class="section">
+        <div class="row">
+            <h1>Carrito de compras</h1>
+            {% if cart.items.all %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre del producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart.items.all %}
+                        <tr>
+                            <td><img src="{{ ASSETS_ROOT }}/img/products/{{ item.product.img_url }}" class="img-fluid card-img" alt="{{ product.name }}" style="width: 75px; height: 75px;"></td>
+                            <td class="align-middle">{{ item.product.name }}</td>
+                            <td class="align-middle">
+                                <form method="post" action="{% url 'cart_add' item.product.id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                    <input type="number" class="form-control" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-secondary">Actualizar</button>
+                                    </div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="align-middle">${{ item.product.price }}</td>
+                            <td class="align-middle">${{ item.subtotal }}</td>
+                            <td class="align-middle">
+                                <form method="post" action="{% url 'cart_remove' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'products' %}" class="btn btn-primary">Sigue comprando</a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h4>Total: $0</h4>
+                        <a href="#" class="btn btn-success">Pagar</a>
+                    </div>
+                </div>
+            {% else %}
+                <p>Tu carrito está vacío.</p>
+                <a href="{% url 'products' %}" class="btn btn-primary">Sigue comprando</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'includes/footer.html' %} 
+
+{% endblock content %}

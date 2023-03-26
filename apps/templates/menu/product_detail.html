@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} {{ product.name }} {% endblock title %}
+
+{% block content %}
+
+{% include 'includes/navigation.html' %}
+
+<div class="pt-12"></div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col-md-6">
+            <img src="{{ ASSETS_ROOT }}/img/products/{{ product.img_url }}" class="img-fluid" alt="{{ product.name }}">
+            </div>
+            <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p>${{ product.price }}</p>
+            <form method="post" action="{% url 'cart_add' product.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label">Cantidad:</label>
+                    {{ form.quantity }}
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart mr-2"></i> Añadir al carrito</button>
+                <a href="{% url 'products' %}" class="btn btn-secondary">Regresar al menú</a>
+            </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  {% include 'includes/footer.html' %} 
+
+  {% endblock content %}
